@@ -1,3 +1,4 @@
 __pycache__
 .coverage
 build_info.txt
+*.pyc
