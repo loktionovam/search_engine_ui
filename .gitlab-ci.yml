@@ -169,7 +169,7 @@ search_engine_deploy:
 
     docker pull "$CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG"
     docker tag "$CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG" "$CI_APPLICATION_REPOSITORY:$(./get_dockerfile_version.sh Dockerfile)"
-    docker push "$CI_APPLICATION_REPOSITORY:$(cat VERSION)"
+    docker push "$CI_APPLICATION_REPOSITORY:$(./get_dockerfile_version.sh Dockerfile)"
     echo ""
   }
 
@@ -210,7 +210,7 @@ search_engine_deploy:
 
   function search_engine_deploy() {
     apk add -U curl
-    curl -X POST -F token="$SEARCH_ENGINE_DEPLOY_TOKEN" -F ref=master http://gitlab.${DOMAIN}/api/v4/projects/1/trigger/pipeline
+    curl -X POST -F token="$SEARCH_ENGINE_DEPLOY_TOKEN" -F ref=master https://gitlab.${DOMAIN}/api/v4/projects/5/trigger/pipeline
   }
 
   function test() {
